@@ -3,6 +3,7 @@
 '''
 
 import sys
+from .surfline import search
 
 def main():
     # Parse args passed to the cli
@@ -10,6 +11,7 @@ def main():
     print('count of args :: {}'.format(len(args)))
     for arg in args:
         print('passed argument :: {}'.format(arg))
+        search(arg)
 
 if __name__ == '__main__':
     main()
