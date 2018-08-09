@@ -13,8 +13,9 @@ def search(searchTerm):
 
 def spotSuggestion(data):
     # Print out the spot suggestions received from the surfline API
-    for entry in data[0]["suggest"]["spot-suggest"][0]["options"]:
-        print(entry["text"])
+    print("These spots matched your search:\n")
+    for hit in data[0]["hits"]["hits"]:
+        print(hit["_source"]["name"])
 
 def getForecastDays(forecastType):
     # These are the types of forecasts offered based on the users preference
@@ -26,6 +27,9 @@ def getForecastDays(forecastType):
     }
 
     return forecastTypes.forecastType
+
+def createForecast(spotId, forecastType):
+    print('forecast for %s' %spotId)
 
 def waveForecast(spotId, days):
     # Set up parameters dictionary
