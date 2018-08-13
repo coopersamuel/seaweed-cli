@@ -26,10 +26,12 @@ def getForecastDays(forecastType):
         "weekend": 3, # TODO - Figure out how to get the weekend forecast
     }
 
-    return forecastTypes.forecastType
+    return forecastTypes[forecastType]
 
 def createForecast(spotId, forecastType):
-    print('forecast for %s' %spotId)
+    # This function takes care of composing the multiple forecast types
+    days = getForecastDays(forecastType)
+    waveForecast(spotId, days)
 
 def waveForecast(spotId, days):
     # Set up parameters dictionary
@@ -39,4 +41,4 @@ def waveForecast(spotId, days):
     }
 
     response = requests.get("https://services.surfline.com/kbyg/spots/forecasts/wave", params=parameters)
-    return response.json()
+    print(len(response.json()["data"]["wave"]))
